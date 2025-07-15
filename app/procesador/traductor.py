@@ -55,6 +55,6 @@ def obtener_rutas_videos(video_ids: list) -> list:
     for vid in video_ids:
         rutas.append({
             "id": vid,
-            "url": f"https://<tu-api>.onrender.com/video/{vid}"
+            "url": f"/videos/{vid}.mp4"
         })
     return rutas

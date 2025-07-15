@@ -1,11 +1,15 @@
 ﻿from fastapi import FastAPI
-from fastapi.responses import FileResponse 
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
-import os 
+import os
 
 from app.procesador.traductor import procesar_frase, obtener_rutas_videos
 
 app = FastAPI()
+
+
+app.mount("/videos", StaticFiles(directory="videos"), name="videos")
 
 class Frase(BaseModel):
     texto: str
@@ -22,7 +26,6 @@ def get_video(video_id: str):
     if not os.path.exists(video_path):
         return {"error": "Video no encontrado"}
     return FileResponse(video_path, media_type="video/mp4")
-
 
 @app.get("/listar_videos")
 def listar_videos():
