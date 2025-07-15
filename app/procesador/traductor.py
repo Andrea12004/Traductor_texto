@@ -50,11 +50,11 @@ def procesar_frase(frase):
             i += 1
 
     return secuencia_videos
-
 def obtener_rutas_videos(video_ids: list) -> list:
     rutas = []
     for vid in video_ids:
-        ruta = os.path.join(VIDEO_FOLDER, f"{vid}.mp4")
-        if os.path.exists(ruta):
-            rutas.append({"id": vid, "ruta": ruta})
+        rutas.append({
+            "id": vid,
+            "url": f"https://<tu-api>.onrender.com/video/{vid}"
+        })
     return rutas
